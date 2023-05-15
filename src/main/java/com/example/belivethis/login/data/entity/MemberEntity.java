@@ -32,4 +32,27 @@ public class MemberEntity extends BaseTimeEntity{
     public void encodePassword(PasswordEncoder passwordEncoder){
         this.password = passwordEncoder.encode(password);
     }
+
+    public void addUserAuthority() {
+        this.role = Role.USER;
+    }
+
+    public boolean checkPassword(PasswordEncoder passwordEncoder, String password) {
+        return passwordEncoder.matches(password, this.password);
+    }
+
+    public String getUsername() {
+        return this.email;
+    }
+
+
+
+//    {
+//        "email": "test@qq.com",
+//            "nickname": "awefaa",
+//            "age": 55,
+//            "password": "1111qqqq!",
+//            "checkedPassword": "1111qqqq!",
+//            "role": "ADMIN"
+//    }
 }
